@@ -1113,7 +1113,23 @@ else:
 # axs.legend()
 # plt.title('Cociente de magnitudes de armonicos')
 # plt.savefig(os.path.commonprefix(fnames_m)+'_cociente_magnitudes.png',dpi=200,facecolor='w')
+#%% Ultimo templog
+fig,ax=plt.subplots(figsize=(8,3.2),constrained_layout=True)
+ax.scatter(time_m,temp_m,color=colors,label='Temperatura muestra',zorder=1)
+ax.plot(t_full,T_full,'-',label='Templog (Rugged O201)',zorder=2)
+# ax.plot(tiempo_interpolado,temp
+# eratura_interpolada,'-',label='Temperatura interpolada')
 
+plt.xlabel('t (s)')
+plt.ylabel('T (°C)')
+plt.legend(loc='lower right')
+plt.grid()
+plt.xlim(0,t_full[-1])
+# plt.title('Temperatura de la muestra',fontsize=15,y=0.9)
+plt.xlim(160,220)
+plt.ylim(-30,10)
+plt.savefig(os.path.join(output_dir,os.path.commonprefix(list(fnames_m))+'_templog_zoom.png'),dpi=300,facecolor='w')
+plt.show()
 
 #%%%
 end_time = time.time()

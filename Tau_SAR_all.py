@@ -84,7 +84,8 @@ meta_C1_3,files_3,time_3,T_300_C1_3,Mr_300_C1_3,Hc_300_C1_3,campo_max_3,mag_max_
 meta_C1_4,files_4,time_4,T_300_C1_4,Mr_300_C1_4,Hc_300_C1_4,campo_max_4,mag_max_4,xi_M_0_4,frecuencia_fund_4,magnitud_fund_0_4,dphi_fem_0_4,SAR_300_C1_4,tau_300_C1_4,N3 = lector_resultados(resultados_C1_300[3])
 
 #% Tau vs Temp
-fig,((ax,ax2),(ax3,ax4))= plt.subplots(nrows=2,ncols=2,figsize=(12,8),constrained_layout=True,sharex=True)
+fig,((ax,ax2),(ax3,ax4))= plt.subplots(nrows=2,ncols=2,figsize=(12,6),constrained_layout=True,sharex=True)
+
 
 ax.plot(T_300_C1_1,tau_300_C1_1,'.-',label='1')
 ax.plot(T_300_C1_2,tau_300_C1_2,'.-',label='2')
@@ -120,7 +121,7 @@ for a in [ax,ax2,ax3,ax4]:
     
 ax3.set_xlabel('T (°C)')
 ax4.set_xlabel('T (°C)')
-plt.suptitle('Comparativa C1 - NE5X - 300 kHz 57 kA/m')
+plt.suptitle('Comparativa C1\nNE5X - 300 kHz 57 kA/m')
 plt.savefig('C1_300_57_NE5X_comparativa.png',dpi=300)
 plt.show()
 #%%
@@ -262,20 +263,16 @@ tau_300_C1_err = []
 # Cálculo de promedios y desviaciones estándar por rango de temperatura
 for i in range(len(temperature_ranges_all)):
     # Promedio para T_300
-    Temp_300_C1.append(np.mean(np.concatenate([T_300_C1_2[indices_temp_300_150_C1_2[i]],
-                                            T_300_C1_3[indices_temp_300_150_C1_3[i]],
+    Temp_300_C1.append(np.mean(np.concatenate([T_300_C1_3[indices_temp_300_150_C1_3[i]],
                                             T_300_C1_4[indices_temp_300_150_C1_4[i]]])))
 
-    Temp_300_C1_err.append(np.std(np.concatenate([T_300_C1_2[indices_temp_300_150_C1_2[i]],
-                                                T_300_C1_3[indices_temp_300_150_C1_3[i]],
+    Temp_300_C1_err.append(np.std(np.concatenate([T_300_C1_3[indices_temp_300_150_C1_3[i]],
                                                 T_300_C1_4[indices_temp_300_150_C1_4[i]]]))),
 
-    tau_300_C1.append(np.mean(np.concatenate([tau_300_C1_2[indices_temp_300_150_C1_2[i]],
-                                           tau_300_C1_3[indices_temp_300_150_C1_3[i]],
+    tau_300_C1.append(np.mean(np.concatenate([tau_300_C1_3[indices_temp_300_150_C1_3[i]],
                                            tau_300_C1_4[indices_temp_300_150_C1_4[i]]])))
 
-    tau_300_C1_err.append(np.std(np.concatenate([tau_300_C1_2[indices_temp_300_150_C1_2[i]],
-                                                 tau_300_C1_3[indices_temp_300_150_C1_3[i]],
+    tau_300_C1_err.append(np.std(np.concatenate([tau_300_C1_3[indices_temp_300_150_C1_3[i]],
                                             tau_300_C1_4[indices_temp_300_150_C1_4[i]]])))
 
 #remuevo elementos nan
@@ -411,6 +408,8 @@ ax.set_xlabel('T (°C)')
 ax.set_ylabel(r'$\tau$ (s)')
 ax.set_title(f'$\\tau$ vs T\nNE5X\n$f$ = 300 kHz      $H_0$ = 57 kA/m')
 plt.savefig('comparativa_NE5X_Aq_SV_loc_fallas.png',dpi=300)
+plt.xlim(-40,30)
+plt.ylim(40,75)
 plt.savefig('comparativa_promedios_NE5X_Aq_SV_loc_fallas.png',dpi=300)
 
 #%%
